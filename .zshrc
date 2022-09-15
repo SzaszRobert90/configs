@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/szaszr/.oh-my-zsh"
+export ZSH="/Users/bws/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -82,7 +82,7 @@ prompt_context() {
 }
 
 #Vim keys
-bindkey -v
+# bindkey -v
 
 #User Paths
 
@@ -114,15 +114,17 @@ fi
 export DISPLAY=:0
 
 export PATH=~/scripts:$PATH
-alias nv='nvim.appimage'
+alias nv="nvim"
+alias gs="git status"
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Created by `userpath` on 2020-08-23 15:57:45
-export PATH="$PATH:/home/szaszr/.local/bin"
-
-export SPARK_HOME="/home/szaszr/spark/spark"
-export PATH="$PATH:$SPARK_HOME/bin"
+export PATH="$PATH:/Users/bws/.local/bin"
+#export PATH="$PATH:/Users/bws/Library/Python/3.7/bin"
+#export SPARK_HOME="/home/szaszr/spark/spark"
+#export PATH="$PATH:$SPARK_HOME/bin"
 
 #export PYSPARK_DRIVER_PYTHON="jupyter"
 #export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
@@ -132,5 +134,11 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 #export BROWSER=chrome
+VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
+alias dexec='docker exec -e COLUMNS="`tput cols`" -e LINES="`tput lines`" -ti $1'
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
-source /home/szaszr/.local/bin/virtualenvwrapper.sh
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export PATH="/usr/local/sbin:$PATH"

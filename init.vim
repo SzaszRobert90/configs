@@ -14,16 +14,48 @@ Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-commentary'
 
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'voldikss/vim-floaterm'
+
 Plug 'rust-lang/rust.vim'
+Plug 'lepture/vim-jinja'
+
+Plug 'github/copilot.vim'
 
 call plug#end()
 
 " Neo/vim Settings
 " ===
-" let g:python3_host_prog = '/home/szaszr/.nvim/nv/bin/python3'
-let g:python3_host_prog = '/home/szaszr/.virtualenvs/nvim/bin/python3'
+let g:python3_host_prog = '/Users/bws/.virtualenvs/nvim/bin/python3'
 
 " MY HACKS
+
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal complete+=kspell
+autocmd FileType gitcommit setlocal complete+=kspell
+
+inoremap <silent><expr> <TAB>
+  \ coc#pum#visible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ?
+  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ CheckBackSpace() ? "\<TAB>" :
+  \ coc#refresh()
+
+function! CheckBackSpace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+
+
 set path+=**
 set wildmenu
 set hidden
@@ -42,16 +74,16 @@ set mouse=a
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
 
 
@@ -119,15 +151,10 @@ let g:coc_global_extensions = ["coc-css",
             \ "coc-docker",
             \ "coc-eslint",
             \ "coc-html",
-            \ "coc-java",
             \ "coc-json",
             \ "coc-prettier",
             \ "coc-highlight",
-            \ "coc-python",
-            \ "coc-snippets",
-            \ "coc-tslint",
-            \ "coc-tsserver",
-            \ "coc-tailwindcss",
+            \ "coc-pyright",
             \ "coc-vetur"]
 
 " icons
@@ -224,7 +251,8 @@ command! -bang -nargs=* PRg
 
 let mapleader = "\<Space>"
 vnoremap . :norm.<CR>
-nnoremap w <C-w>
+" nnoremap w <C-w>
+nmap jk <Esc>
 nmap <leader>h :sp<CR>
 nmap <leader>v :vsp<CR>
 
@@ -235,6 +263,7 @@ nmap <leader>m :Maps<CR>
 nmap <leader>c :e $MYVIMRC<CR>
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>t :10sp<CR>:ter<CR>i<CR>
+" nmap <leader>t :FloatermNew<CR>
 
 nmap <leader>la  <Plug>(coc-codeaction)
 nmap <leader>lf  <Plug>(coc-fix-current)
