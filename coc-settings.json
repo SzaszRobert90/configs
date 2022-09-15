@@ -1,18 +1,10 @@
 {
-  "suggest.maxCompleteItemCount": 20,
-  "eslint.filetypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "javascriptreact"
-  ],
+  "suggest.maxCompleteItemCount": 3,
   "diagnostic.infoSign": "ღ",
   "diagnostic.hintSign": "ஐ",
   "diagnostic.warningSign": "⚠",
   "diagnostic.errorSign": "✖",
   "diagnostic.enable": true,
-  "diagnostic.signOffset": 9999999,
-  "diagnostic.highlightOffset": 9999999,
   "diagnostic.refreshOnInsertMode": true,
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
@@ -41,22 +33,16 @@
     "typeParameter": "\uf728",
     "default": "\uf29c"
   },
-  "python.pythonPath": "/home/szaszr/.virtualenvs/nvim/bin/python",
-  "python.jediEnabled": true,
+  "python.pythonPath": "/Users/bws/.virtualenvs/nvim/bin/python",
   "python.linting.enabled": true,
   "python.linting.pylintArgs": ["--rcfile", "~/.pylintrc", "-d", "C0411"],
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "/home/szaszr/.virtualenvs/nvim/bin/black",
-  "python.linting.pylintUseMinimalCheckers": false,
+  "python.formatting.blackArgs": ["--line-length", "120"],
+  "python.formatting.blackPath": "/Users/bws/.virtualenvs/nvim/bin/black",
   "python.linting.pylintPath": "pylint",
   "python.sortImports.args": ["-sp", "~/.isort.cfg"],
-  "python.autoUpdateLanguageServer":true,
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "python"
-  ],
-  "python.autoComplete.extraPaths": [
-    "${env:SPARK_HOME}/python",
-    "${env:SPARK_HOME}/python/pyspark"
   ]
 }
